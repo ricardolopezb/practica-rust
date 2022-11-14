@@ -1,3 +1,4 @@
 pub fn nth(n: u32) -> u32 {
-    unimplemented!("What is the 0-indexed {}th prime number?", n)
+    (2..).filter(|x| (2..(x-1)).all(|i| x%i != 0)).nth(n as usize).unwrap()
 }
+

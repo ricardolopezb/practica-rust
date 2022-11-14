@@ -1,14 +1,13 @@
 use std::iter::FromIterator;
 
 pub struct SimpleLinkedList<T> {
-    // Delete this field
-    // dummy is needed to avoid unused parameter error during compilation
-    dummy: ::std::marker::PhantomData<T>,
+    head: Option<T>,
+    tail: Option<Box<SimpleLinkedList<T>>>,
 }
 
 impl<T> SimpleLinkedList<T> {
     pub fn new() -> Self {
-        unimplemented!()
+        SimpleLinkedList{head: None, tail: None}
     }
 
     // You may be wondering why it's necessary to have is_empty()
@@ -17,19 +16,27 @@ impl<T> SimpleLinkedList<T> {
     // whereas is_empty() is almost always cheap.
     // (Also ask yourself whether len() is expensive for SimpleLinkedList)
     pub fn is_empty(&self) -> bool {
-        unimplemented!()
+        self.head == None
     }
 
     pub fn len(&self) -> usize {
-        unimplemented!()
+        if self.head != None {
+            return 1 + self.tail.len();
+        } 
+        return 0;
     }
 
     pub fn push(&mut self, _element: T) {
-        unimplemented!()
+        if self.head == None {
+            self.head = Some(_element);
+        } else {
+            self.tail.push(_element);
+        }
+
     }
 
     pub fn pop(&mut self) -> Option<T> {
-        unimplemented!()
+        self.tail.peek
     }
 
     pub fn peek(&self) -> Option<&T> {
@@ -38,7 +45,7 @@ impl<T> SimpleLinkedList<T> {
 
     #[must_use]
     pub fn rev(self) -> SimpleLinkedList<T> {
-        unimplemented!()
+        let other_list = 
     }
 }
 
